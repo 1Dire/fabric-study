@@ -1,0 +1,14 @@
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.button {
+  width: max-content;
+}
+
+#canvas {
+  border: 1px solid black;
+}
+
