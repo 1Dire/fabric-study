@@ -1,15 +1,21 @@
-import React from "react";
-import { Form } from "react-bootstrap";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
-const Input = ({ type = "text", placeholder = "입력하세요", value, onChange }) => {
+function FormInput({ label, value ,onChange}) {
+
   return (
-    <Form.Control
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-    />
+    <ButtonToolbar aria-label="Toolbar with Button groups">
+      <InputGroup>
+        <InputGroup.Text id="btnGroupAddon" style={{ width: "100px", textAlign: "center" }}>{label}</InputGroup.Text>
+        <Form.Control
+          type="number"
+          defaultValue={value}
+          onChange={onChange}
+        />
+      </InputGroup>
+    </ButtonToolbar>
   );
-};
+}
 
-export default Input;
+export default FormInput;

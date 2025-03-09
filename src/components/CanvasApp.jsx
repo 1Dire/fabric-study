@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, Rect, Circle } from "fabric";
-import "../style.css";
+import Toolbar from "../layout/Toolbar";
 import Settings from "./Setting";
+
 const CanvasApp = () => {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
@@ -9,20 +10,26 @@ const CanvasApp = () => {
     const initCanvas = new Canvas(canvasRef.current, {
       width: 500,
       height: 500,
+      backgroundColor: "#fff",
     });
-    initCanvas.backgroundColor = "#fff";
+
     initCanvas.renderAll();
     setCanvas(initCanvas);
     return () => {
       initCanvas.dispose();
     };
   }, []);
-
+  const buttonGroups = [
+    [
+      { label: "Home", icon: "bi-square", onClick: () => addRectangle() },
+      { label: "Profile", icon: "bi-circle", onClick: () => addCircle() },
+    ],
+  ];
   const addRectangle = () => {
     if (canvas) {
       const rect = new Rect({
-        top: canvas.height / 2 - 30, 
-        left: canvas.width / 2 - 50, 
+        top: canvas.height / 2 - 30,
+        left: canvas.width / 2 - 50,
         width: 100,
         height: 60,
         fill: "#d2d2d2",
@@ -33,8 +40,8 @@ const CanvasApp = () => {
   const addCircle = () => {
     if (canvas) {
       const circle = new Circle({
-        top: canvas.height / 2 - 50,  
-        left: canvas.width / 2 - 50,  
+        top: canvas.height / 2 - 50,
+        left: canvas.width / 2 - 50,
         radius: 50,
         fill: "#d2d2d2",
       });
@@ -44,10 +51,12 @@ const CanvasApp = () => {
 
   return (
     <div className="box">
-      <button onClick={addRectangle}>네모 추가</button>
-      <button onClick={addCircle}>동그라미 추가</button>
+      <Toolbar buttonGroups={buttonGroups} vertical={true}  position={{top:"50%",left:10}}/>
+
       <canvas id="canvas" ref={canvasRef}></canvas>
-      <Settings canvas={canvas}/>
+      <div className="toolbar">
+        <Settings canvas={canvas} />
+      </div>
     </div>
   );
 };
