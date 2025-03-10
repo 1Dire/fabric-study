@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import FormInput from "../layout/FormInput";
-import ColorInput from "../layout/ColorInput";
+import FormInput from "./FormInput";
+import ColorInput from "./ColorInput";
 function Settings({ canvas }) {
   const [selectedObject, setSelectedObject] = useState(null);
   const [width, setWidth] = useState("");
@@ -89,7 +89,8 @@ function Settings({ canvas }) {
   };
 
   return (
-    <div className="setting">
+    <div className="side-bar position-fixed end-0">
+      <div>
       {selectedObject && selectedObject.type === "rect" && (
         <>
           <FormInput
@@ -123,6 +124,8 @@ function Settings({ canvas }) {
           />
         </>
       )}
+      </div>
+   
     </div>
   );
 }

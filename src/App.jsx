@@ -1,4 +1,4 @@
-import CanvasApp from "./components/CanvasApp";
+import CanvasApp from "./layout/CanvasApp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 function App() {
